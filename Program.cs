@@ -1,4 +1,5 @@
 ﻿using DesignPatternsApp.Creational.AbstractFactory;
+using DesignPatternsApp.Creational.Builder;
 using DesignPatternsApp.Creational.FactoryMethod;
 
 public class Program
@@ -32,6 +33,15 @@ public class Program
 
         Console.WriteLine("\n--- Тестуємо другу фабрику ---");
         client.ClientMethod(new ConcreteFactory2());
+        #endregion
+
+        #region Builder
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        var builder = new ConcreteBuilder();
+        var director = new Director(builder);
+        director.Construct();
+        var product = builder.GetProduct();
+        Console.WriteLine(product);
         #endregion
     }
 }
