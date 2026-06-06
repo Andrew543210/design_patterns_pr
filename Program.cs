@@ -3,6 +3,7 @@ using DesignPatternsApp.Creational.Builder;
 using DesignPatternsApp.Creational.FactoryMethod;
 using DesignPatternsApp.Creational.Prototype;
 using DesignPatternsApp.Structural.Adapter;
+using DesignPatternsApp.Structural.Bridge;
 
 public class Program
 {
@@ -72,6 +73,25 @@ public class Program
         Console.WriteLine($"[Клієнт]: Отримано фінальний результат від ITarget:{result}");
 
         #endregion
+
+        #region Bridge
+
+        Console.WriteLine("\n--- Bridge ---");
         
+        IDevice myTv = new Tv();
+        
+        Console.WriteLine("\n[Клієнт]: Беремо звичайний пульт...");
+        RemoteControl basicRemote = new RemoteControl(myTv);
+        basicRemote.TogglePower();
+        
+        Console.WriteLine("\n[Клієнт]: Беремо просунутий пульт для того самого ТВ...");
+        AdvancedRemoteControl advancedRemote = new AdvancedRemoteControl(myTv);
+        advancedRemote.Mute(); // Звук скинеться до 0
+        
+        basicRemote.TogglePower();
+
+        #endregion
     }
 }
+
+
