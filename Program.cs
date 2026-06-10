@@ -8,6 +8,7 @@ using DesignPatternsApp.Structural.Decorator;
 using DesignPatternsApp.Structural.Facade;
 using DesignPatternsApp.Structural.FlyWeight;
 using Product = DesignPatternsApp.Creational.Builder.Product;
+using DesignPatternsApp.Structural.Proxy;
 
 public class Program
 {
@@ -174,6 +175,26 @@ public class Program
 
 
          #endregion
+         
+        #region Proxy
+
+        Console.WriteLine("\n--- Тест патерну Proxy ---");
+        
+        Console.WriteLine("Клієнт: Намагаюся видалити товар як звичайний Користувач...");
+        IWarehouseRepository proxyForUser = new WarehouseProxy("User");
+        proxyForUser.DeleteProduct(101); 
+
+        Console.WriteLine(new string('-', 40));
+        
+        Console.WriteLine("Клієнт: Намагаюся видалити товар як Адміністратор...");
+        IWarehouseRepository proxyForAdmin = new WarehouseProxy("Admin");
+        
+        proxyForAdmin.DeleteProduct(101); 
+
+        Console.WriteLine("\nКлієнт: Роблю повторний запит на видалення іншого товару...");
+        proxyForAdmin.DeleteProduct(202);
+        #endregion
+            
     }
 }
 
